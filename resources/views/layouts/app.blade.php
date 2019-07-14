@@ -25,11 +25,17 @@
     OneSignal.push(function() {
         OneSignal.init({
         appId: "5df5f8d9-d6af-42ac-9ba6-6bf3b40129fc",
+        
         notifyButton: {
             enable: true,
         },
         });
     });
+    @auth
+    OneSignal.push(function() {
+        OneSignal.setExternalUserId({{@auth()->id()}});
+    });  
+    @endauth
     </script>
 </head>
 <body>
