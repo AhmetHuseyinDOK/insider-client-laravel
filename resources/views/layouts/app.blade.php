@@ -23,26 +23,28 @@
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
 <script>
   var OneSignal = window.OneSignal || [];
-  axios.get("http://hackathon-client.herokuapp.com/user").then( user => {
-    if(user.id){
-        axios.post("http://localhost:8000/api/view",{
-        customerId:user.id,
-        productUrl:window.location.pathname    
-        });
-        OneSignal.push(function() {
+  OneSignal.push(function() {
             OneSignal.init({
                 appId: "5df5f8d9-d6af-42ac-9ba6-6bf3b40129fc",
                 notifyButton: {
                     enable: true,
                 },
             });
-            OneSignal.setExternalUserId(user.id); 
+            
         });
+  axios.get("http://hackathon-client.herokuapp.com/user").then( res => {
+    if(res.data.id){
+        axios.post("http://hackathon-returner.herokuapp.com/api/view",{
+        customerId:res.data.id,
+        productUrl:window.location.pathname    
+        });
+        OneSignal.push(function(){
+            OneSignal.setExternalUserId(res.data.id); 
+        })
     }  
     
 })
   </script>
-    
 </head>
 <body>
     <div id="app">
