@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/user',function(){
-    if(auth()->id){
+    if(auth()->id()){
         return response()->json([
-            "id"=>auth()->id
+            "id"=>auth()->id()
         ]);
     }
     return response()->json([]);
