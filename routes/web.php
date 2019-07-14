@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/user',function(){
+    if(auth()->id){
+        return response()->json([
+            "id"=>auth()->id
+        ]);
+    }
+    return response()->json([]);
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
