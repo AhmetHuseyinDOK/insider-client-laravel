@@ -18,6 +18,19 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+        OneSignal.init({
+        appId: "5df5f8d9-d6af-42ac-9ba6-6bf3b40129fc",
+        notifyButton: {
+            enable: true,
+        },
+        });
+    });
+    </script>
 </head>
 <body>
     <div id="app">
